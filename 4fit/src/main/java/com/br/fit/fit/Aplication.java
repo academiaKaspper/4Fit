@@ -6,6 +6,7 @@ public class Aplication {
 		
 		System.out.println("Olá, mundo!");
 		System.out.println("Adeus Gato do Davi");
+		System.out.println("Amo gatinhos");
 		
 	}
 
