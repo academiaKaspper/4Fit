@@ -13,6 +13,9 @@ public class Aplication {
 		System.out.println("agora deu certo");
 		
 		
+		System.out.println("Só craque no java");
+		
+		
 		
 		
 	}
