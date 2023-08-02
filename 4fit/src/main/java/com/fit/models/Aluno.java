@@ -15,7 +15,7 @@ public class Aluno extends Pessoa {
     @JoinColumn(name = "modalidade_id")
     private Modalidade modalidade;
 
-    private Boolean status;
+    private boolean status;
     private LocalDate dataMatricula;
 
 }
