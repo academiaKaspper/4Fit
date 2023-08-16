@@ -14,27 +14,68 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {
-                label: 'Home',
+                label: 'Agenda',
                 items: [
                     {
                         label: 'Dashboard',
                         icon: 'pi pi-fw pi-github',
                         routerLink: ['/'],
                     },
+                    {
+                        label: 'Home',
+                        icon: 'pi pi-th-large pi-tablet',
+                        routerLink: ['/uikit/panel'],
+                    },
                 ],
             },
             {
-                label: 'UI Components',
+                label: 'Controle das Finanças',
                 items: [
                     {
-                        label: 'Form Layout',
-                        icon: 'pi pi-fw pi-id-card',
+                        label: 'Gastos principais',
+                        icon: ' pi pi-dollar pi-panel',
                         routerLink: ['/uikit/formlayout'],
                     },
                     {
-                        label: 'Input',
-                        icon: 'pi pi-fw pi-check-square',
+                        label: 'Balanço Financeiro',
+                        icon: 'pi pi-chart-line',
+                        routerLink: ['/uikit/charts'],
+                    },
+
+                ],
+            },
+            {
+                label: 'Cadastros',
+                items: [
+
+                    {
+                        label: 'Cadastrar/Editar',
+                        icon: 'pi pi-user-plus pi-bookmark',
+                        items: [
+                            {
+                                label: 'Instrutor',
+                        icon: 'pi pi-plus pi-check-square',
                         routerLink: ['/uikit/input'],
+
+                            },
+                            {
+                                label: ' Aluno',
+                                icon: 'pi pi-plus pi-table',
+                        routerLink: ['/uikit/table'],
+                            },
+                        ],
+                    },
+                ],
+            },
+
+            {
+                label: 'Prime Blocks/indefinidos',
+                items: [
+                    {
+                        label: 'Free Blocks',
+                        icon: 'pi pi-fw pi-eye',
+                        routerLink: ['/blocks'],
+                        badge: 'NEW',
                     },
                     {
                         label: 'Float Label',
@@ -52,11 +93,6 @@ export class AppMenuComponent implements OnInit {
                         routerLink: ['/uikit/button'],
                     },
                     {
-                        label: 'Table',
-                        icon: 'pi pi-fw pi-table',
-                        routerLink: ['/uikit/table'],
-                    },
-                    {
                         label: 'List',
                         icon: 'pi pi-fw pi-list',
                         routerLink: ['/uikit/list'],
@@ -65,11 +101,6 @@ export class AppMenuComponent implements OnInit {
                         label: 'Tree',
                         icon: 'pi pi-fw pi-share-alt',
                         routerLink: ['/uikit/tree'],
-                    },
-                    {
-                        label: 'Panel',
-                        icon: 'pi pi-fw pi-tablet',
-                        routerLink: ['/uikit/panel'],
                     },
                     {
                         label: 'Overlay',
@@ -102,26 +133,11 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-file',
                         routerLink: ['/uikit/file'],
                     },
-                    {
-                        label: 'Chart',
-                        icon: 'pi pi-fw pi-chart-bar',
-                        routerLink: ['/uikit/charts'],
-                    },
+
                     {
                         label: 'Misc',
                         icon: 'pi pi-fw pi-circle',
                         routerLink: ['/uikit/misc'],
-                    },
-                ],
-            },
-            {
-                label: 'Prime Blocks',
-                items: [
-                    {
-                        label: 'Free Blocks',
-                        icon: 'pi pi-fw pi-eye',
-                        routerLink: ['/blocks'],
-                        badge: 'NEW',
                     },
                     {
                         label: 'All Blocks',
@@ -199,75 +215,7 @@ export class AppMenuComponent implements OnInit {
                     },
                 ],
             },
-            {
-                label: 'Hierarchy',
-                items: [
-                    {
-                        label: 'Submenu 1',
-                        icon: 'pi pi-fw pi-bookmark',
-                        items: [
-                            {
-                                label: 'Submenu 1.1',
-                                icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    {
-                                        label: 'Submenu 1.1.1',
-                                        icon: 'pi pi-fw pi-bookmark',
-                                    },
-                                    {
-                                        label: 'Submenu 1.1.2',
-                                        icon: 'pi pi-fw pi-bookmark',
-                                    },
-                                    {
-                                        label: 'Submenu 1.1.3',
-                                        icon: 'pi pi-fw pi-bookmark',
-                                    },
-                                ],
-                            },
-                            {
-                                label: 'Submenu 1.2',
-                                icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    {
-                                        label: 'Submenu 1.2.1',
-                                        icon: 'pi pi-fw pi-bookmark',
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                    {
-                        label: 'Submenu 2',
-                        icon: 'pi pi-fw pi-bookmark',
-                        items: [
-                            {
-                                label: 'Submenu 2.1',
-                                icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    {
-                                        label: 'Submenu 2.1.1',
-                                        icon: 'pi pi-fw pi-bookmark',
-                                    },
-                                    {
-                                        label: 'Submenu 2.1.2',
-                                        icon: 'pi pi-fw pi-bookmark',
-                                    },
-                                ],
-                            },
-                            {
-                                label: 'Submenu 2.2',
-                                icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    {
-                                        label: 'Submenu 2.2.1',
-                                        icon: 'pi pi-fw pi-bookmark',
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                ],
-            },
+
             {
                 label: 'Get Started',
                 items: [

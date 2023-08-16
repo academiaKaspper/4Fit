@@ -28,5 +28,5 @@ export class PanelsDemoComponent implements OnInit {
             },
         ];
     }
-    
+
 }
