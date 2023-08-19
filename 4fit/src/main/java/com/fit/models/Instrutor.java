@@ -1,7 +1,5 @@
 package com.fit.models;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -11,9 +9,9 @@ import lombok.Data;
 @Data
 public class Instrutor extends Pessoa {
 
-    @ManyToOne
-    @JoinColumn(name = "modalidade_id")
-    private Modalidade modalidade;
+	@ManyToOne
+	@JoinColumn(name = "modalidade_id")
+	private Modalidade modalidade;
 
-    private boolean status;
+	private boolean status;
 }

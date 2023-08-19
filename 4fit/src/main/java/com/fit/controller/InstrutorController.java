@@ -17,5 +17,9 @@ public class InstrutorController {
         this.instrutorRepository = instrutorRepository;
     }
 
+	public InstrutorRepository getInstrutorRepository() {
+		return instrutorRepository;
+	}
+
 }
 
