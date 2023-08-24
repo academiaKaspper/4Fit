@@ -15,6 +15,7 @@ public class DBService {
     private AlunosRepository alunosRepository;
 
     public void popularTabelaAlunos() {
+    
         Alunos aluno1 = new Alunos();
         aluno1.setNome("Fulano de Tal");
         aluno1.setCpf("123.456.789-00");
