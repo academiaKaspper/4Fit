@@ -37,4 +37,10 @@ public class InstrutorResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<InstrutorDTO> upadate(@PathVariable Integer id, @Valid @RequestBody InstrutorDTO objDTO){
+        Instrutor obj = instrutorService.update(id, objDTO);
+        return ResponseEntity.ok().body(new InstrutorDTO(obj));
+    }
 }

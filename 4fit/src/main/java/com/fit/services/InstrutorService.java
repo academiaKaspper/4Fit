@@ -7,6 +7,7 @@ import com.fit.repositories.InstrutorRepository;
 import com.fit.repositories.PessoaRepository;
 import com.fit.services.exceptions.DataIntegrityViolationException;
 import com.fit.services.exceptions.ObjectnotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,13 @@ public class InstrutorService {
         Instrutor newObj = new Instrutor(objDTO);
         return instrutorRepository.save(newObj);
     }
+    public Instrutor update(Integer id, @Valid InstrutorDTO objDTO) {
+        objDTO.setId(id);
+        Instrutor oldObj = findById(id);
+        validaPorCpfEEmail(objDTO);
+        oldObj = new Instrutor(objDTO);
+        return instrutorRepository.save(oldObj);
+    }
 
     private void validaPorCpfEEmail(InstrutorDTO objDTO) {
         Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
@@ -46,4 +54,6 @@ public class InstrutorService {
             throw new DataIntegrityViolationException("E-mail já cadastrado no sistema!");
         }
     }
+
+
 }
