@@ -43,6 +43,13 @@ public class InstrutorService {
         oldObj = new Instrutor(objDTO);
         return instrutorRepository.save(oldObj);
     }
+    public void delete(Integer id) {
+        Instrutor obj = findById(id);
+        if(obj.getMatriculas().size() > 0){
+            throw new DataIntegrityViolationException("O instrutor contém alunos matriculados em suas aulas e não pode ser deletado!");
+        }
+            instrutorRepository.deleteById(id);
+    }
 
     private void validaPorCpfEEmail(InstrutorDTO objDTO) {
         Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
@@ -54,6 +61,7 @@ public class InstrutorService {
             throw new DataIntegrityViolationException("E-mail já cadastrado no sistema!");
         }
     }
+
 
 
 }

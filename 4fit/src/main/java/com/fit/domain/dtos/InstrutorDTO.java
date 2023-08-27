@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fit.domain.Instrutor;
 import com.fit.domain.enums.Perfil;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ public class InstrutorDTO  implements Serializable {
     protected Integer id;
     @NotNull(message = "O campo NOME é requerido")
     protected String nome;
+    @CPF
     @NotNull(message = "O campo CPF é requerido")
     protected String cpf;
     @NotNull(message = "O campo DATA DE NASCIMENTO é requerido")

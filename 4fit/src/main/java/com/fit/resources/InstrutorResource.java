@@ -43,4 +43,10 @@ public class InstrutorResource {
         Instrutor obj = instrutorService.update(id, objDTO);
         return ResponseEntity.ok().body(new InstrutorDTO(obj));
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<InstrutorDTO> delete(@PathVariable Integer id){
+        instrutorService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
