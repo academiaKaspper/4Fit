@@ -25,7 +25,7 @@ public class DBService {
     private MatriculaRepository matriculaRepository;
 
     public void instanciaDB(){
-        Instrutor instrutor1 = new Instrutor(null, "Vinicius Diniz", "123.456.789-00", "20/04/1985",
+        Instrutor instrutor1 = new Instrutor(null, "Vinicius Diniz", "223.456.789-00", "20/04/1985",
                 "(11) 98765-4321", "vinicius@email.com", "senha123", "TipoX");
         instrutor1.addPerfis(Perfil.ADMIN);
         Instrutor instrutor2 = new Instrutor(null, "Maria Santos", "987.654.321-11", "15/05/1990",
@@ -70,7 +70,7 @@ public class DBService {
         Aluno aluno7 = new Aluno(null, "Isabela Rodrigues", "700.800.970-10", "30/10/1998",
                 "(11) 90000-0007", "isabela@email.com", "isabela404", "AlunoTipo1");
 
-        Aluno aluno8 = new Aluno(null, "Pedro Almeida", "800.900.10=730-20", "12/02/2004",
+        Aluno aluno8 = new Aluno(null, "Pedro Almeida", "800.900.130-20", "12/02/2004",
                 "(11) 90000-0008", "pedro@email.com", "pedro505", "AlunoTipo2");
 
 

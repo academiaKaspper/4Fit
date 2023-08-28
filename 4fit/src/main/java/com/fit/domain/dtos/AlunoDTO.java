@@ -1,7 +1,7 @@
 package com.fit.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fit.domain.Instrutor;
+import com.fit.domain.Aluno;
 import com.fit.domain.enums.Perfil;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.br.CPF;
@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class InstrutorDTO  implements Serializable {
+public class AlunoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     protected Integer id;
@@ -33,12 +33,12 @@ public class InstrutorDTO  implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCriacao = LocalDate.now();
 
-    public InstrutorDTO() {
+    public AlunoDTO() {
         super();
-        addPerfil(Perfil.COLABORADOR);
+        addPerfil(Perfil.ALUNO);
     }
 
-    public InstrutorDTO(Instrutor obj) {
+    public AlunoDTO(Aluno obj) {
         this.id = obj.getId();
         this.nome = obj.getNome();
         this.cpf = obj.getCpf();
@@ -49,7 +49,7 @@ public class InstrutorDTO  implements Serializable {
         this.tipo = obj.getTipo();
         this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
         this.dataCriacao = obj.getDataCriacao();
-        addPerfil(Perfil.COLABORADOR);
+        addPerfil(Perfil.ALUNO);
     }
 
     public Integer getId() {

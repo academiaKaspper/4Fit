@@ -1,9 +1,9 @@
 package com.fit.services;
 
-import com.fit.domain.Instrutor;
+import com.fit.domain.Aluno;
 import com.fit.domain.Pessoa;
-import com.fit.domain.dtos.InstrutorDTO;
-import com.fit.repositories.InstrutorRepository;
+import com.fit.domain.dtos.AlunoDTO;
+import com.fit.repositories.AlunoRepository;
 import com.fit.repositories.PessoaRepository;
 import com.fit.services.exceptions.DataIntegrityViolationException;
 import com.fit.services.exceptions.ObjectnotFoundException;
@@ -15,43 +15,43 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class InstrutorService {
+public class AlunoService {
     @Autowired
-    private InstrutorRepository instrutorRepository;
+    private AlunoRepository instrutorRepository;
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    public Instrutor findById(Integer id){
-        Optional<Instrutor> obj = instrutorRepository.findById(id);
+    public Aluno findById(Integer id){
+        Optional<Aluno> obj = instrutorRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectnotFoundException("Objeto não encontrado! Id: " + id));
     }
 
-    public List<Instrutor> findAll() {
+    public List<Aluno> findAll() {
         return instrutorRepository.findAll();
     }
 
-    public Instrutor create(InstrutorDTO objDTO) {
+    public Aluno create(AlunoDTO objDTO) {
         objDTO.setId(null);
         validaPorCpfEEmail(objDTO);
-        Instrutor newObj = new Instrutor(objDTO);
+        Aluno newObj = new Aluno(objDTO);
         return instrutorRepository.save(newObj);
     }
-    public Instrutor update(Integer id, @Valid InstrutorDTO objDTO) {
+    public Aluno update(Integer id, @Valid AlunoDTO objDTO) {
         objDTO.setId(id);
-        Instrutor oldObj = findById(id);
+        Aluno oldObj = findById(id);
         validaPorCpfEEmail(objDTO);
-        oldObj = new Instrutor(objDTO);
+        oldObj = new Aluno(objDTO);
         return instrutorRepository.save(oldObj);
     }
     public void delete(Integer id) {
-        Instrutor obj = findById(id);
+        Aluno obj = findById(id);
         if(obj.getMatriculas().size() > 0){
-            throw new DataIntegrityViolationException("O instrutor contém alunos matriculados em suas aulas e não pode ser deletado!");
+            throw new DataIntegrityViolationException("O aluno contém matriculados em dias!");
         }
             instrutorRepository.deleteById(id);
     }
 
-    private void validaPorCpfEEmail(InstrutorDTO objDTO) {
+    private void validaPorCpfEEmail(AlunoDTO objDTO) {
         Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
         if(obj.isPresent() && obj.get().getId() != objDTO.getId()){
             throw new DataIntegrityViolationException("CPF já cadastrado no sistema!");
