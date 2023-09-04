@@ -45,7 +45,7 @@ public class AlunoService {
     }
     public void delete(Integer id) {
         Aluno obj = findById(id);
-        if(obj.getMatriculas().size() > 0){
+        if(obj.getMatriculas().getId() != 0){
             throw new DataIntegrityViolationException("O aluno contém matriculados em dias!");
         }
             instrutorRepository.deleteById(id);
