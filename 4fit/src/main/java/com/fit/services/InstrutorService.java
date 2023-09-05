@@ -45,7 +45,7 @@ public class InstrutorService {
     }
     public void delete(Integer id) {
         Instrutor obj = findById(id);
-        if(obj.getMatriculas().size() > 0){
+        if(obj.getAlunos().size() > 0){
             throw new DataIntegrityViolationException("O instrutor contém alunos matriculados em suas aulas e não pode ser deletado!");
         }
             instrutorRepository.deleteById(id);

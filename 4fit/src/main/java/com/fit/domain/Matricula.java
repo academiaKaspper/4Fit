@@ -7,13 +7,13 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 @Entity
 public class Matricula implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //private Fatura fatura;
-    // private Plano plano;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -32,13 +32,19 @@ public class Matricula implements Serializable {
     private String observacoes;
 
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "aluno_id")
     private Aluno aluno;
 
     @ManyToOne
     @JoinColumn(name = "instrutor_id")
     private Instrutor instrutor;
+
+    @OneToMany(mappedBy = "matricula")
+    private List<Fatura> faturas = new ArrayList<>();
+    @OneToMany(mappedBy = "matricula")
+    private List<Modalidade> modalidades = new ArrayList<>();
+
 
     public Matricula(Integer id, Status status, Turno turno, String titulo, String observacoes, Aluno aluno, Instrutor instrutor) {
         this.id = id;
