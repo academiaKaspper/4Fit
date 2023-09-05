@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,8 +17,8 @@ public class Instrutor extends Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@JsonIgnore
-	@OneToMany(mappedBy = "instrutor")
-	private List<Matricula> matriculas = new ArrayList<>();
+	@OneToMany
+	private List<Aluno> alunos = new ArrayList<>();
 
 
 	public Instrutor() {
@@ -43,11 +42,11 @@ public class Instrutor extends Pessoa implements Serializable {
 		this.dataCriacao = obj.getDataCriacao();
 	}
 
-	public List<Matricula> getMatriculas() {
-		return matriculas;
+	public List<Aluno> getAlunos() {
+		return alunos;
 	}
 
-	public void setMatriculas(List<Matricula> matriculas) {
-		this.matriculas = matriculas;
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
 	}
 }

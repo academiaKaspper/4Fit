@@ -1,19 +1,26 @@
 package com.fit.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
+import com.fit.domain.enums.Turno;
+import jakarta.persistence.*;
 
-
+@Entity
 public class Modalidade {
-
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String nome;
     private Long capacidadeAlunos;
     private double preco;
-    private String horario;
-    private String status; 
+    @Enumerated(EnumType.STRING)
+    private Turno turno;
+
+    @ManyToOne
+    @JoinColumn(name = "matricula_id")
+    private Matricula matricula;
 }
 
+//    @ManyToMany
+//    @JoinTable(name = "matricula_modalidade",
+//            joinColumns = @JoinColumn(name = "matricula_id"),
+//            inverseJoinColumns = @JoinColumn(name = "modalidade_id"))
+//    private List<Modalidade> modalidades;
