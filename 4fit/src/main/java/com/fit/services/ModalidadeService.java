@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.fit.domain.Modalidade;
 import com.fit.domain.dtos.ModalidadeDTO;
@@ -13,6 +14,7 @@ import com.fit.services.exceptions.ObjectnotFoundException;
 
 import jakarta.validation.Valid;
 
+@Service
 public class ModalidadeService {
 
 	@Autowired

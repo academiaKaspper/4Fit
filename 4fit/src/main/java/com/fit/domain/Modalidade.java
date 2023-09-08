@@ -9,20 +9,37 @@ import jakarta.persistence.*;
 
 @Entity
 public class Modalidade implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String nome;
-    private Long capacidadeAlunos;
-    private double preco;
-    @Enumerated(EnumType.STRING)
-    private Turno turno;
+	private static final long serialVersionUID = 1L;
 
-    @ManyToOne
-    @JoinColumn(name = "matricula_id")
-    private Matricula matricula;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private String nome;
+	private Long capacidadeAlunos;
+	private double preco;
+	@Enumerated(EnumType.STRING)
+	private Turno turno;
+
+	public Modalidade(Integer id, String nome, Long capacidadeAlunos, double preco, Turno turno) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.capacidadeAlunos = capacidadeAlunos;
+		this.preco = preco;
+		this.turno = turno;
+
+	}
+	
+	@ManyToMany(mappedBy = "modalidades")
+    private List<Matricula> matriculas;
+
+	@ManyToOne
+	@JoinColumn(name = "modalidade_id")
+	private Modalidade modalidade;
+
+	@ManyToMany
+	@JoinTable(name = "matricula_modalidade", joinColumns = @JoinColumn(name = "matricula_id"), inverseJoinColumns = @JoinColumn(name = "modalidade_id"))
+	private List<Modalidade> modalidades;
 
 	public Modalidade(ModalidadeDTO objDTO) {
 	}
@@ -32,15 +49,15 @@ public class Modalidade implements Serializable {
 	}
 
 	public String getNome() {
-		return null;
+		return nome;
 	}
 
 	public Long getCapacidadeAlunos() {
-		return null;
+		return capacidadeAlunos;
 	}
 
 	public double getPreco() {
-		return 0;
+		return preco;
 	}
 
 	public List<Modalidade> getModalidade() {
@@ -50,11 +67,5 @@ public class Modalidade implements Serializable {
 	public void setCapacidadeAlunos(Long capacidadeAlunos) {
 		this.capacidadeAlunos = capacidadeAlunos;
 	}
-	
-}
 
-//    @ManyToMany
-//    @JoinTable(name = "matricula_modalidade",
-//            joinColumns = @JoinColumn(name = "matricula_id"),
-//            inverseJoinColumns = @JoinColumn(name = "modalidade_id"))
-//    private List<Modalidade> modalidades;
+}

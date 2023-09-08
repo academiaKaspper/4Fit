@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fit.domain.Modalidade;
-import com.fit.domain.dtos.MatriculaDTO;
 import com.fit.domain.dtos.ModalidadeDTO;
 import com.fit.services.ModalidadeService;
+
 
 @RestController
 @RequestMapping(value = "/modalidade")
@@ -21,7 +21,7 @@ public class ModalidadeResource {
 	private ModalidadeService modalidadeService;
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<ModalidadeDTO> findById(@PathVariable Integer id) {
+	public ResponseEntity<ModalidadeDTO>findById(@PathVariable Integer id) {
 		Modalidade obj = modalidadeService.findById(id);
 		return ResponseEntity.ok().body(new ModalidadeDTO(obj));
 	}
@@ -33,7 +33,7 @@ public class ModalidadeResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<MatriculaDTO> create() {
+	public ResponseEntity<ModalidadeDTO> create() {
 		return null;
 	}
 }

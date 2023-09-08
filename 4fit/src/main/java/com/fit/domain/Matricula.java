@@ -44,8 +44,14 @@ public class Matricula implements Serializable {
 
     @OneToMany(mappedBy = "matricula")
     private List<Fatura> faturas = new ArrayList<>();
-    @OneToMany(mappedBy = "matricula")
+  
+    
+    @ManyToMany
+    @JoinTable(name = "matricula_modalidade",
+               joinColumns = @JoinColumn(name = "matricula_id"),
+               inverseJoinColumns = @JoinColumn(name = "modalidade_id"))
     private List<Modalidade> modalidades = new ArrayList<>();
+
 
 
     public Matricula(Integer id, Status status, Turno turno, String titulo, String observacoes, Aluno aluno, Instrutor instrutor) {
