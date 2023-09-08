@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Matricula implements Serializable {
@@ -45,12 +46,6 @@ public class Matricula implements Serializable {
     @OneToMany(mappedBy = "matricula")
     private List<Fatura> faturas = new ArrayList<>();
   
-    
-    @ManyToMany
-    @JoinTable(name = "matricula_modalidade",
-               joinColumns = @JoinColumn(name = "matricula_id"),
-               inverseJoinColumns = @JoinColumn(name = "modalidade_id"))
-    private List<Modalidade> modalidades = new ArrayList<>();
 
 
 
@@ -151,4 +146,8 @@ public class Matricula implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+	public Set<Integer> getFatura() {
+		return null;
+	}
 }

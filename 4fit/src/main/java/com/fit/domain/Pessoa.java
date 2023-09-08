@@ -146,4 +146,3 @@ public abstract class Pessoa implements Serializable {
         return Objects.hash(id, cpf);
     }
 }
-
