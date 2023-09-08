@@ -30,16 +30,6 @@ public class Modalidade implements Serializable {
 
 	}
 	
-	@ManyToMany(mappedBy = "modalidades")
-    private List<Matricula> matriculas;
-
-	@ManyToOne
-	@JoinColumn(name = "modalidade_id")
-	private Modalidade modalidade;
-
-	@ManyToMany
-	@JoinTable(name = "matricula_modalidade", joinColumns = @JoinColumn(name = "matricula_id"), inverseJoinColumns = @JoinColumn(name = "modalidade_id"))
-	private List<Modalidade> modalidades;
 
 	public Modalidade(ModalidadeDTO objDTO) {
 	}

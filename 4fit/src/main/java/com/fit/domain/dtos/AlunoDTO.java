@@ -131,4 +131,8 @@ public class AlunoDTO implements Serializable {
     public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
+
+	public Integer getFatura() {
+		return null;
+	}
 }

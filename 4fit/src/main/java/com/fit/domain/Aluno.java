@@ -49,5 +49,13 @@ public class Aluno extends Pessoa implements Serializable {
         this.matriculas = matriculas;
     }
 
-//teste
+	public void setFatura(Fatura fatura) {
+
+	}
+
+	public Object getFatura() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
