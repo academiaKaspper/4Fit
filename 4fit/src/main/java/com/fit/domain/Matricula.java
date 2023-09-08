@@ -1,6 +1,7 @@
 package com.fit.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import com.fit.domain.enums.Status;
 import com.fit.domain.enums.Turno;
 import jakarta.persistence.*;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 @Entity
 public class Matricula implements Serializable {
     private static final long serialVersionUID = 1L;
