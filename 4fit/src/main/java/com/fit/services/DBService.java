@@ -3,12 +3,15 @@ package com.fit.services;
 import com.fit.domain.Aluno;
 import com.fit.domain.Instrutor;
 import com.fit.domain.Matricula;
+import com.fit.domain.Modalidade;
 import com.fit.domain.enums.Perfil;
 import com.fit.domain.enums.Status;
 import com.fit.domain.enums.Turno;
 import com.fit.repositories.AlunoRepository;
 import com.fit.repositories.InstrutorRepository;
 import com.fit.repositories.MatriculaRepository;
+import com.fit.repositories.ModalidadeRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,8 @@ public class DBService {
     private AlunoRepository alunoRepository;
     @Autowired
     private MatriculaRepository matriculaRepository;
+    @Autowired
+    private ModalidadeRepository modalidadeRepository;
 
     public void instanciaDB(){
         Instrutor instrutor1 = new Instrutor(null, "Vinicius Diniz", "223.456.789-00", "20/04/1985",
@@ -84,8 +89,19 @@ public class DBService {
         Matricula matricula7 = new Matricula(null, Status.PENDENTE, Turno.MANHA, "teste7", "testeMatricula", aluno7, instrutor6);
         Matricula matricula8 = new Matricula(null, Status.PAGO, Turno.TARDE, "teste8", "testeMatricula", aluno8, instrutor4);
 
+        Modalidade modalidade1 = new Modalidade(null, "Modalidade 1", 50L, 100.0, Turno.MANHA);
+        Modalidade modalidade2 = new Modalidade(null, "Modalidade 2", 30L, 80.0, Turno.TARDE);
+        Modalidade modalidade3 = new Modalidade(null, "Modalidade 3", 40L, 90.0, Turno.NOITE);
+        Modalidade modalidade4 = new Modalidade(null, "Modalidade 4", 60L, 120.0, Turno.MANHA);
+        Modalidade modalidade5 = new Modalidade(null, "Modalidade 5", 35L, 75.0, Turno.TARDE);
+        Modalidade modalidade6 = new Modalidade(null, "Modalidade 6", 45L, 95.0, Turno.NOITE);
+        Modalidade modalidade7 = new Modalidade(null, "Modalidade 7", 55L, 110.0, Turno.MANHA);
+        Modalidade modalidade8 = new Modalidade(null, "Modalidade 8", 28L, 70.0, Turno.TARDE);
+        
         instrutorRepository.saveAll(Arrays.asList(instrutor1,instrutor2,instrutor3,instrutor4,instrutor5,instrutor6,instrutor7,instrutor8));
         alunoRepository.saveAll(Arrays.asList(aluno1,aluno2,aluno3 ,aluno4 ,aluno5 ,aluno6,aluno7,aluno8));
         matriculaRepository.saveAll(Arrays.asList(matricula1,matricula2,matricula3,matricula4,matricula5,matricula6,matricula7,matricula8));
+        modalidadeRepository.saveAll(Arrays.asList(modalidade1, modalidade2, modalidade3, modalidade4,
+                modalidade5, modalidade6, modalidade7, modalidade8));
     }
 }
