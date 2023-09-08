@@ -1,6 +1,7 @@
 package com.fit.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import com.fit.domain.enums.Status;
 import com.fit.domain.enums.Turno;
 import jakarta.persistence.*;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 @Entity
 public class Matricula implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -42,8 +44,14 @@ public class Matricula implements Serializable {
 
     @OneToMany(mappedBy = "matricula")
     private List<Fatura> faturas = new ArrayList<>();
-    @OneToMany(mappedBy = "matricula")
+  
+    
+    @ManyToMany
+    @JoinTable(name = "matricula_modalidade",
+               joinColumns = @JoinColumn(name = "matricula_id"),
+               inverseJoinColumns = @JoinColumn(name = "modalidade_id"))
     private List<Modalidade> modalidades = new ArrayList<>();
+
 
 
     public Matricula(Integer id, Status status, Turno turno, String titulo, String observacoes, Aluno aluno, Instrutor instrutor) {
