@@ -1,4 +1,4 @@
-export interface Aluno {
+export class Aluno {
   id?: any;
   nome: string;
   cpf: string;

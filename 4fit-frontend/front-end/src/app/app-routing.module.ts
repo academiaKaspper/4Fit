@@ -9,9 +9,7 @@ import { InstrutorDeleteComponent } from "./components/instrutor/instrutor-delet
 import { AuthGuard } from "./auth/auth.guard";
 import { InstrutorCreateComponent } from "./components/instrutor/instrutor-create/instrutor-create.component";
 import { InstrutorUpdateComponent } from "./components/instrutor/instrutor-update/InstrutorUpdateComponent";
-import { AlunoCreateComponent } from "./components/aluno/aluno-create/aluno-create.component";
-import { AlunoUpdateComponent } from "./components/aluno/aluno-update/aluno-updateComponent";
-import { AlunoDeleteComponent } from "./components/aluno/aluno-delete/aluno-delete.component";
+import { AlunoCrudComponent } from "./components/aluno/aluno-create/aluno-create.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -22,9 +20,7 @@ const routes: Routes = [
     children: [
       { path: "home", component: HomeComponent },
       { path: "alunos", component: AlunoListComponent },
-      { path: "alunos/create", component: AlunoCreateComponent },
-      { path: "alunos/update/:id", component: AlunoUpdateComponent },
-      { path: "alunos/delete/:id", component: AlunoDeleteComponent },
+      { path: "alunos/crud", component: AlunoCrudComponent },
       { path: "instrutores", component: InstrutorListComponent },
       { path: "instrutores/create", component: InstrutorCreateComponent },
       { path: "instrutores/update/:id", component: InstrutorUpdateComponent },

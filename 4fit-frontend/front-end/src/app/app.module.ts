@@ -21,18 +21,16 @@ import { ToastrModule } from "ngx-toastr";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { AlunoCrudComponent } from "./components/aluno/aluno-create/aluno-create.component";
+import { AlunoListComponent } from "./components/aluno/aluno-list/aluno-list.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/home/home.component";
-import { LoginComponent } from "./components/login/login.component";
-import { NavComponent } from "./components/nav/nav.component";
-import { AlunoListComponent } from "./components/aluno/aluno-list/aluno-list.component";
-import { AlunoDeleteComponent } from "./components/aluno/aluno-delete/aluno-delete.component";
-import { AlunoUpdateComponent } from "./components/aluno/aluno-update/aluno-updateComponent";
-import { AlunoCreateComponent } from "./components/aluno/aluno-create/aluno-create.component";
 import { InstrutorCreateComponent } from "./components/instrutor/instrutor-create/instrutor-create.component";
 import { InstrutorDeleteComponent } from "./components/instrutor/instrutor-delete/instrutor-delete.component";
 import { InstrutorListComponent } from "./components/instrutor/instrutor-list/instrutor-list.component";
 import { InstrutorUpdateComponent } from "./components/instrutor/instrutor-update/InstrutorUpdateComponent";
+import { LoginComponent } from "./components/login/login.component";
+import { NavComponent } from "./components/nav/nav.component";
 
 @NgModule({
   declarations: [
@@ -46,9 +44,7 @@ import { InstrutorUpdateComponent } from "./components/instrutor/instrutor-updat
     InstrutorDeleteComponent,
     InstrutorUpdateComponent,
     InstrutorCreateComponent,
-    AlunoDeleteComponent,
-    AlunoUpdateComponent,
-    AlunoCreateComponent,
+    AlunoCrudComponent,
   ],
   imports: [
     BrowserModule,
