@@ -31,10 +31,12 @@ Tecnologias Utilizadas
 
 Autores
 
+Eron  <a href="https://www.linkedin.com/in/eronmoraes7/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+
     Vinícius
     Davi
     Rebeca
-    Eron
+    Eron  <a href="https://www.linkedin.com/in/eronmoraes7/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
 
 Licença
 
