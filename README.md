@@ -1,6 +1,6 @@
 # 4Fit
 
-![4fit_](https://github.com/academiaKaspper/4Fit/assets/110741158/4ec16342-7bc1-4989-ac7c-fa466802afcd)
+![4fit_](https://github.com/academiaKaspper/4Fit/assets/110741158/a8e98f5e-c683-405e-b7fe-d5cc82fd7983)
 
 Sistema de Gerenciamento de Academias
 Introdução
