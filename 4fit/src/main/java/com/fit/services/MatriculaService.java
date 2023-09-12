@@ -18,14 +18,14 @@ public class MatriculaService {
     @Autowired
     private MatriculaRepository matriculaRepository;
 
-    public Matricula findById(Integer id){
+    public Matricula findById(Integer id) {
         Optional<Matricula> obj = matriculaRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectnotFoundException("Objeto não encontrado! ID: " + id));
     }
 
 
     public List<MatriculaVo> findAll() {
-       return  matriculaRepository.findAll().stream().map(matricula ->{
+        return matriculaRepository.findAll().stream().map(matricula -> {
             MatriculaVo matricula1 = new MatriculaVo();
             matricula1.setAluno(matricula.getAluno());
             matricula1.setTitulo(matricula.getTitulo());
@@ -34,5 +34,9 @@ public class MatriculaService {
             return matricula1;
         }).toList();
 
+    }
+
+    public void delete(Integer id) {
+        matriculaRepository.deleteById(id);
     }
 }

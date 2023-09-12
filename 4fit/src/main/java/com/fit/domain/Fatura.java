@@ -33,7 +33,21 @@ public class Fatura implements Serializable {
     @JoinColumn(name = "modalidade_id")
     private Modalidade modalidade;
 
-	public void setAluno(Aluno aluno) {
+
+    public Fatura() {
+        super();
+    }
+
+    public Fatura(Integer id, Status status, YearMonth mesReferencia, LocalDate dataPagamento, Matricula matricula, Modalidade modalidade) {
+        this.id = id;
+        this.status = status;
+        this.mesReferencia = mesReferencia;
+        this.dataPagamento = dataPagamento;
+        this.matricula = matricula;
+        this.modalidade = modalidade;
+    }
+
+    public void setAluno(Aluno aluno) {
 		
 	}
 
@@ -47,7 +61,31 @@ public class Fatura implements Serializable {
 		
 	}
 
-	public void setDataPagamento(Object object) {
+    public Integer getId() {
+        return id;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public YearMonth getMesReferencia() {
+        return mesReferencia;
+    }
+
+    public LocalDate getDataPagamento() {
+        return dataPagamento;
+    }
+
+    public Matricula getMatricula() {
+        return matricula;
+    }
+
+    public Modalidade getModalidade() {
+        return modalidade;
+    }
+
+    public void setDataPagamento(Object object) {
 		// TODO Auto-generated method stub
 		
 	}

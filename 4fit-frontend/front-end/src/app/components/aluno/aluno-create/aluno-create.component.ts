@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { Operacao } from "src/app/enums/operacao-enum";
 import { Aluno } from "src/app/models/aluno";
 import { AlunoService } from "src/app/services/aluno.service";
 
@@ -95,9 +96,30 @@ export class AlunoCrudComponent {
   cancelar() {
     this.router.navigate(["/alunos"]);
   }
-  // validaCampos(): boolean {
-  //   return (
-  //     this.nome.valid && this.cpf.valid && this.email.valid && this.senha.valid
-  //   );
-  // }
+  concluir() {
+    if (this.operacao == Operacao.Deletar) {
+      return this.deletar();
+    } else if (this.operacao == Operacao.Cadastrar) {
+      return this.create();
+    } else {
+      return this.atualizar();
+    }
+  }
+  deletar() {
+    this.service.delete(this.aluno.id).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (e) => {
+        if (e.status == 200) {
+          this.router.navigate(["/alunos"]);
+        }
+      }
+    );
+  }
+  atualizar() {
+    this.service.update(this.form.value).subscribe((res) => {
+      console.log(res);
+    });
+  }
 }

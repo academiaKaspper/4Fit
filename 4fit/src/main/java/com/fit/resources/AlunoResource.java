@@ -17,36 +17,41 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/alunos")
 public class AlunoResource {
     @Autowired
-    private AlunoService instrutorService;
+    private AlunoService alunoService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<AlunoDTO> findById(@PathVariable Integer id){
-        Aluno obj = instrutorService.findById(id);
+    public ResponseEntity<AlunoDTO> findById(@PathVariable Integer id) {
+        Aluno obj = alunoService.findById(id);
         return ResponseEntity.ok().body(new AlunoDTO(obj));
     }
 
     @GetMapping
-    public ResponseEntity<List<AlunoDTO>> findAll(){
-        List<Aluno> list = instrutorService.findAll();
+    public ResponseEntity<List<AlunoDTO>> findAll() {
+        List<Aluno> list = alunoService.findAll();
         List<AlunoDTO> listDTO = list.stream().map(obj -> new AlunoDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
     }
+
     @PostMapping
-    public ResponseEntity<AlunoDTO> create(@Valid @RequestBody AlunoDTO objDTO){
-        Aluno newObj = instrutorService.create(objDTO);
+    public ResponseEntity<AlunoDTO> create(@Valid @RequestBody AlunoDTO objDTO) {
+        Aluno newObj = alunoService.create(objDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<AlunoDTO> upadate(@PathVariable Integer id, @Valid @RequestBody AlunoDTO objDTO){
-        Aluno obj = instrutorService.update(id, objDTO);
+    public ResponseEntity<AlunoDTO> upadate(@PathVariable Integer id, @Valid @RequestBody AlunoDTO objDTO) {
+        Aluno obj = alunoService.update(id, objDTO);
         return ResponseEntity.ok().body(new AlunoDTO(obj));
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<AlunoDTO> delete(@PathVariable Integer id){
-        instrutorService.delete(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> delete(@PathVariable Integer id) {
+        try {
+            alunoService.delete(id);
+            return ResponseEntity.ok("Aluno deletado com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Erro ao deletar aluno: " + e.getMessage());
+        }
     }
 }
