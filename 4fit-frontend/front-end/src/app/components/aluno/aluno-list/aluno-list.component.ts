@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
+import { Router } from "@angular/router";
+import { Operacao } from "src/app/enums/operacao-enum";
 import { Aluno } from "src/app/models/aluno";
 import { AlunoService } from "src/app/services/aluno.service";
 
@@ -19,7 +21,7 @@ export class AlunoListComponent implements OnInit {
   dataSource = new MatTableDataSource<Aluno>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(private service: AlunoService) {}
+  constructor(private service: AlunoService, private route: Router) {}
 
   ngOnInit(): void {
     this.findAll();
@@ -36,5 +38,8 @@ export class AlunoListComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  crudAluno(id: number = null, operacao: string) {
+    this.route.navigate(["/alunos/crud", { id: id, operacao: operacao }]);
   }
 }

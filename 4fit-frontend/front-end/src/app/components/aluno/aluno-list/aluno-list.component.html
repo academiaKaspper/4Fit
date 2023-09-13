@@ -2,7 +2,7 @@
   <h1>Listando Alunoes</h1>
 
   <button
-    routerLink="create"
+    (click)="crudAluno(null, 'Cadastrar')"
     class="mat-elevation-z8"
     mat-stroked-button
     color="primary"
@@ -45,10 +45,10 @@
       <ng-container matColumnDef="acoes">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let element">
-          <a routerLink="update/{{ element.id }}">
+          <a (click)="crudAluno(element.id, 'Atualizar')">
             <i class="material-icons edit">edit</i>
           </a>
-          <a routerLink="delete/{{ element.id }}">
+          <a (click)="crudAluno(null, 'Deletar')">
             <i class="material-icons delete">delete</i>
           </a>
         </td>

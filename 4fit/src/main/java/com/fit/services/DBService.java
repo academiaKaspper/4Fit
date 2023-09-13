@@ -130,7 +130,7 @@ public class DBService {
 
         for (Aluno aluno : alunos) {
             if (aluno.getFatura() == null) {
-                Fatura fatura = new Fatura();
+                Fatura fatura = new Fatura(null, null, null, null, null, null);
                 fatura.setAluno(aluno);
                 faturaRepository.save(fatura);
                 aluno.setFatura(fatura);
@@ -139,3 +139,4 @@ public class DBService {
         }
 	}
 }
+//Teste sakai regrgr

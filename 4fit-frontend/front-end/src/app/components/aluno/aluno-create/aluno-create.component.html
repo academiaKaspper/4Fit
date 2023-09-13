@@ -1,6 +1,6 @@
 <div class="container mat-elevation-z8">
-  <form class="form">
-    <h1 class="fullWidth">Cadastrar Aluno</h1>
+  <form class="form" [formGroup]="form">
+    <h1 class="fullWidth">{{ operacao }} Aluno</h1>
 
     <section class="section">
       <mat-checkbox (click)="addPerfil(0)" class="margin" color="primary"
@@ -21,9 +21,8 @@
     <mat-form-field class="fullWidth">
       <mat-label>Nome</mat-label>
       <input
-        [(ngModel)]="aluno.nome"
         name="nome"
-        [formControl]="nome"
+        formControlName="nome"
         required
         matInput
         placeholder="Ex.. fulano de tal"
@@ -35,9 +34,8 @@
     <mat-form-field class="fullWidth">
       <mat-label>CPF</mat-label>
       <input
-        [(ngModel)]="aluno.cpf"
         name="cpf"
-        [formControl]="cpf"
+        formControlName="cpf"
         required
         matInput
         placeholder="Ex..000.000.000-00"
@@ -49,9 +47,8 @@
     <mat-form-field class="fullWidth">
       <mat-label>E-mail</mat-label>
       <input
-        [(ngModel)]="aluno.email"
         name="email"
-        [formControl]="email"
+        formControlName="email"
         required
         matInput
         placeholder="Ex.. fulano@mail.com"
@@ -62,9 +59,8 @@
     <mat-form-field class="fullWidth">
       <mat-label>Senha</mat-label>
       <input
-        [(ngModel)]="aluno.senha"
         name="senha"
-        [formControl]="senha"
+        formControlName="senha"
         required
         type="password"
         matInput
@@ -75,15 +71,14 @@
 
     <button
       (click)="create()"
-      [disabled]="!validaCampos()"
       class="fullWidth mat-elevation-z4"
       mat-flat-button
-      color="primary"
+      [color]="operacao ? 'warn' : 'primary'"
     >
-      Cadastrar
+      {{ operacao == "Deletar" ? "Excluir" : "Salvar" }}
     </button>
     <button
-      routerLink="../"
+      (click)="cancelar()"
       class="fullWidth mat-elevation-z4"
       mat-stroked-button
       color="warn"

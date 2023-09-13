@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { Aluno } from "src/app/models/aluno";
 import { AlunoService } from "src/app/services/aluno.service";
@@ -10,29 +10,62 @@ import { AlunoService } from "src/app/services/aluno.service";
   templateUrl: "./aluno-create.component.html",
   styleUrls: ["./aluno-create.component.scss"],
 })
-export class AlunoCreateComponent {
-  aluno: Aluno = {
-    id: "",
-    nome: "",
-    cpf: "",
-    email: "",
-    senha: "",
-    perfil: [],
-    dataCriacao: "",
-  };
-
-  nome: FormControl = new FormControl(null, Validators.minLength(3));
-  cpf: FormControl = new FormControl(null, Validators.required);
-  email: FormControl = new FormControl(null, Validators.email);
-  senha: FormControl = new FormControl(null, Validators.minLength(3));
-
+export class AlunoCrudComponent {
+  aluno: Aluno = new Aluno();
+  form: FormGroup;
+  operacao: string = "";
   constructor(
     private service: AlunoService,
     private toast: ToastrService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    route.params.subscribe((param: any) => {
+      this.operacao = param["operacao"];
+      this.form = new FormGroup({
+        nome: new FormControl(
+          { value: null, disabled: this.operacao == "Deletar" },
+          Validators.minLength(3)
+        ),
+        cpf: new FormControl(
+          { value: null, disabled: this.operacao == "Deletar" },
+          Validators.required
+        ),
+        email: new FormControl(
+          { value: null, disabled: this.operacao == "Deletar" },
+          Validators.email
+        ),
+        senha: new FormControl(
+          { value: null, disabled: this.operacao == "Deletar" },
+          Validators.minLength(3)
+        ),
+      });
+      if (param["id"] !== "null") {
+        service.findById(param["id"]).subscribe((res: any) => {
+          this.aluno = res;
 
-  ngOnInit(): void {}
+          this.form = new FormGroup({
+            nome: new FormControl(
+              { value: this.aluno.nome, disabled: this.operacao == "Deletar" },
+              Validators.minLength(3)
+            ),
+            cpf: new FormControl(
+              { value: this.aluno.cpf, disabled: this.operacao == "Deletar" },
+              Validators.required
+            ),
+            email: new FormControl(
+              { value: this.aluno.email, disabled: this.operacao == "Deletar" },
+              Validators.email
+            ),
+            senha: new FormControl(
+              { value: this.aluno.senha, disabled: this.operacao == "Deletar" },
+              Validators.minLength(3)
+            ),
+          });
+        });
+      }
+    });
+  }
 
   create(): void {
     this.service.create(this.aluno).subscribe(
@@ -59,10 +92,12 @@ export class AlunoCreateComponent {
       this.aluno.perfil.push(perfil);
     }
   }
-
-  validaCampos(): boolean {
-    return (
-      this.nome.valid && this.cpf.valid && this.email.valid && this.senha.valid
-    );
+  cancelar() {
+    this.router.navigate(["/alunos"]);
   }
+  // validaCampos(): boolean {
+  //   return (
+  //     this.nome.valid && this.cpf.valid && this.email.valid && this.senha.valid
+  //   );
+  // }
 }

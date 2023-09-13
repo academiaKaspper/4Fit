@@ -35,7 +35,7 @@ public class FaturaService {
 
         if (matricula != null && modalidade != null) {
             // Crie e configure a Fatura
-            Fatura fatura = new Fatura();
+            Fatura fatura = new Fatura(modalidadeId, null, null, null, matricula, modalidade);
             fatura.setStatus(Status.PENDENTE);
             fatura.setMesReferencia(YearMonth.now());
             fatura.setDataPagamento(null);

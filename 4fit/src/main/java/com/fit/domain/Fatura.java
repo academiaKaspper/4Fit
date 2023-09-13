@@ -11,8 +11,21 @@ import java.time.YearMonth;
 @Entity
 public class Fatura implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    
 
-    @Id
+    public Fatura(Integer id, Status status, YearMonth mesReferencia, LocalDate dataPagamento, Matricula matricula,
+			Modalidade modalidade) {
+		super();
+		this.id = id;
+		this.status = status;
+		this.mesReferencia = mesReferencia;
+		this.dataPagamento = dataPagamento;
+		this.matricula = matricula;
+		this.modalidade = modalidade;
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -61,5 +74,42 @@ public class Fatura implements Serializable {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public LocalDate getDataPagamento() {
+		return dataPagamento;
+	}
+
+	public void setDataPagamento(LocalDate dataPagamento) {
+		this.dataPagamento = dataPagamento;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public YearMonth getMesReferencia() {
+		return mesReferencia;
+	}
+
+	public Matricula getMatricula() {
+		return matricula;
+	}
+
+	public Modalidade getModalidade() {
+		return modalidade;
+	}
+	
     
 }
