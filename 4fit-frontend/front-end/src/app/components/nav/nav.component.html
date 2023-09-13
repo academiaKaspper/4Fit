@@ -33,14 +33,14 @@
   </mat-drawer>
 
   <div class="sidenav-content">
-    <app-header></app-header>
-    <button
+    <app-header (menu)="drawer.toggle()"></app-header>
+    <!-- <button
       class="menu mat-elevation-z8"
       (click)="drawer.toggle()"
       mat-icon-button
     >
       <mat-icon>menu</mat-icon>
-    </button>
+    </button> -->
     <router-outlet></router-outlet>
   </div>
 </mat-drawer-container>

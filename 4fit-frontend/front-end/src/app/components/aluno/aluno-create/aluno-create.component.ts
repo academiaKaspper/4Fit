@@ -1,3 +1,4 @@
+import { NotificationService } from "./../../../services/notification.service";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -19,6 +20,7 @@ export class AlunoCrudComponent {
     private service: AlunoService,
     private toast: ToastrService,
     private router: Router,
+    private notification: NotificationService,
     private route: ActivatedRoute
   ) {
     route.params.subscribe((param: any) => {
@@ -112,7 +114,18 @@ export class AlunoCrudComponent {
       },
       (e) => {
         if (e.status == 200) {
-          this.router.navigate(["/alunos"]);
+          this.notification.enviarNotificacaoToRoute(
+            "Tudo certo",
+            "Aluno excluído com sucesso",
+            "success",
+            "/alunos"
+          );
+        } else {
+          this.notification.enviarNotificacao(
+            "Ops",
+            "Falha ao excluir aluno!",
+            "error"
+          );
         }
       }
     );

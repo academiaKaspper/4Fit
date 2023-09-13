@@ -22,4 +22,7 @@ export class NavComponent implements OnInit {
     this.authService.logout();
     this.toast.info("Logout realizado com sucesso", "Logout");
   }
+  teste() {
+    debugger;
+  }
 }

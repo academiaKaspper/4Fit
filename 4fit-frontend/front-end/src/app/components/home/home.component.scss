@@ -7,3 +7,15 @@
 img {
   height: 20rem;
 }
+.background-image-card {
+  width: calc(100% / 3);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.titulo-link {
+  font-size: 5rem;
+  color: white;
+}
