@@ -1,11 +1,11 @@
-import { NotificationService } from "../../../services/notification.service";
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { ToastrService } from "ngx-toastr";
 import { Operacao } from "src/app/enums/operacao-enum";
 import { Aluno } from "src/app/models/aluno";
 import { AlunoService } from "src/app/services/aluno.service";
+import { NotificationService } from "../../../services/notification.service";
 
 @Component({
   selector: "app-aluno-crud",
@@ -16,58 +16,47 @@ export class AlunoCrudComponent {
   aluno: Aluno = new Aluno();
   form: FormGroup;
   operacao: string = "";
+
   constructor(
     private service: AlunoService,
     private toast: ToastrService,
-    private router: Router,
     private notification: NotificationService,
-    private route: ActivatedRoute
+    public dialogRef: MatDialogRef<AlunoCrudComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    if (data) {
+      this.aluno = data.element;
+      this.operacao = data.operacao;
+    }
     this.form = new FormGroup({
       nome: new FormControl(
-        { value: null, disabled: this.operacao == "Deletar" },
+        {
+          value: this.aluno?.nome ?? null,
+          disabled: this.operacao == "Deletar",
+        },
         Validators.minLength(3)
       ),
       cpf: new FormControl(
-        { value: null, disabled: this.operacao == "Deletar" },
+        {
+          value: this.aluno?.cpf ?? null,
+          disabled: this.operacao == "Deletar",
+        },
         Validators.required
       ),
       email: new FormControl(
-        { value: null, disabled: this.operacao == "Deletar" },
+        {
+          value: this.aluno?.email ?? null,
+          disabled: this.operacao == "Deletar",
+        },
         Validators.email
       ),
       senha: new FormControl(
-        { value: null, disabled: this.operacao == "Deletar" },
+        {
+          value: this.aluno?.senha ?? null,
+          disabled: this.operacao == "Deletar",
+        },
         Validators.minLength(3)
       ),
-    });
-    route.params.subscribe((param: any) => {
-      this.operacao = param["operacao"];
-
-      if (param["id"] !== "null") {
-        service.findById(param["id"]).subscribe((res: any) => {
-          this.aluno = res;
-
-          this.form = new FormGroup({
-            nome: new FormControl(
-              { value: this.aluno.nome, disabled: this.operacao == "Deletar" },
-              Validators.minLength(3)
-            ),
-            cpf: new FormControl(
-              { value: this.aluno.cpf, disabled: this.operacao == "Deletar" },
-              Validators.required
-            ),
-            email: new FormControl(
-              { value: this.aluno.email, disabled: this.operacao == "Deletar" },
-              Validators.email
-            ),
-            senha: new FormControl(
-              { value: this.aluno.senha, disabled: this.operacao == "Deletar" },
-              Validators.minLength(3)
-            ),
-          });
-        });
-      }
     });
   }
 
@@ -75,7 +64,6 @@ export class AlunoCrudComponent {
     this.service.create(this.aluno).subscribe(
       () => {
         this.toast.success("Aluno cadastrado com sucesso", "Cadastro");
-        this.router.navigate(["alunos"]);
       },
       (ex) => {
         if (ex.error.errors) {
@@ -97,11 +85,21 @@ export class AlunoCrudComponent {
     }
   }
   cancelar() {
-    this.router.navigate(["/alunos"]);
+    this.dialogRef.close();
   }
   concluir() {
     if (this.operacao == Operacao.Deletar) {
-      return this.deletar();
+      this.notification
+        .enviarNotificacaoConfirmar(
+          "Excluir",
+          "Tem certeza que deseja excluir esse aluno?",
+          "warn"
+        )
+        .then((x) => {
+          if (x.isConfirmed) {
+            return this.deletar();
+          }
+        });
     } else if (this.operacao == Operacao.Cadastrar) {
       return this.create();
     } else {
@@ -111,10 +109,11 @@ export class AlunoCrudComponent {
   deletar() {
     this.service.delete(this.aluno.id).subscribe(
       (res) => {
-        console.log(res);
+        debugger;
       },
       (e) => {
         if (e.status == 200) {
+          this.dialogRef.close();
           this.notification.enviarNotificacaoToRoute(
             "Tudo certo",
             "Aluno excluído com sucesso",

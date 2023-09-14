@@ -6,11 +6,11 @@ import { Instrutor } from "src/app/models/instrutor";
 import { InstrutorService } from "src/app/services/instrutor.service";
 
 @Component({
-  selector: "app-instrutor-list",
-  templateUrl: "./instrutor-list.component.html",
-  styleUrls: ["./instrutor-list.component.scss"],
+  selector: "app-instrutor",
+  templateUrl: "./instrutor.component.html",
+  styleUrls: ["./instrutor.component.scss"],
 })
-export class InstrutorListComponent implements OnInit {
+export class InstrutorComponent implements OnInit {
   ELEMENT_DATA: Instrutor[] = [];
 
   displayedColumns: string[] = ["id", "nome", "cpf", "email", "acoes"];

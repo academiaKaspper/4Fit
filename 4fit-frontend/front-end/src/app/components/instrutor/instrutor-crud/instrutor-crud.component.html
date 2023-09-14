@@ -2,22 +2,6 @@
   <form class="form" [formGroup]="form">
     <h1 class="fullWidth">{{ operacao }} Instrutor</h1>
 
-    <section class="section">
-      <mat-checkbox (click)="addPerfil(0)" class="margin" color="primary"
-        >Admin</mat-checkbox
-      >
-      <mat-checkbox
-        (click)="addPerfil(1)"
-        [checked]="true"
-        class="margin"
-        color="primary"
-        >Aluno</mat-checkbox
-      >
-      <mat-checkbox (click)="addPerfil(2)" class="margin" color="primary"
-        >Instrutor</mat-checkbox
-      >
-    </section>
-
     <mat-form-field class="fullWidth">
       <mat-label>Nome</mat-label>
       <input

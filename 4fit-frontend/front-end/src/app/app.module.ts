@@ -12,6 +12,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -25,10 +26,8 @@ import { AlunoCrudComponent } from "./components/aluno/aluno-crud/aluno-crud.com
 import { AlunoComponent } from "./components/aluno/aluno.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/home/home.component";
-import { InstrutorCreateComponent } from "./components/instrutor/instrutor-create/instrutor-create.component";
-import { InstrutorDeleteComponent } from "./components/instrutor/instrutor-delete/instrutor-delete.component";
-import { InstrutorListComponent } from "./components/instrutor/instrutor-list/instrutor-list.component";
-import { InstrutorUpdateComponent } from "./components/instrutor/instrutor-update/InstrutorUpdateComponent";
+import { InstrutorCrudComponent } from "./components/instrutor/instrutor-crud/instrutor-crud.component";
+import { InstrutorComponent } from "./components/instrutor/instrutor.component";
 import { LoginComponent } from "./components/login/login.component";
 import { NavComponent } from "./components/nav/nav.component";
 
@@ -38,12 +37,10 @@ import { NavComponent } from "./components/nav/nav.component";
     NavComponent,
     HomeComponent,
     HeaderComponent,
-    InstrutorListComponent,
+    InstrutorComponent,
     AlunoComponent,
     LoginComponent,
-    InstrutorDeleteComponent,
-    InstrutorUpdateComponent,
-    InstrutorCreateComponent,
+    InstrutorCrudComponent,
     AlunoCrudComponent,
   ],
   imports: [
@@ -51,6 +48,7 @@ import { NavComponent } from "./components/nav/nav.component";
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    MatDialogModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     // Forms

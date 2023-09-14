@@ -3,7 +3,7 @@
     <h1>Alunos</h1>
 
     <button
-      (click)="crudAluno(null, 'Cadastrar')"
+      (click)="openDialog(null, 'Cadastrar')"
       class="mat-elevation-z8"
       mat-raised-button
       color="primary"
@@ -14,11 +14,11 @@
   </div>
 
   <mat-form-field>
-    <mat-label>Filter</mat-label>
+    <mat-label>Pesquisar aluno</mat-label>
     <input
       matInput
       (keyup)="applyFilter($event)"
-      placeholder="Ex. ium"
+      placeholder="Ex.: José"
       #input
     />
   </mat-form-field>
@@ -48,10 +48,10 @@
       <ng-container matColumnDef="acoes">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let element">
-          <a (click)="crudAluno(element.id, 'Editar')">
+          <a (click)="openDialog(element, 'Editar')">
             <i class="material-icons edit">edit</i>
           </a>
-          <a (click)="crudAluno(element.id, 'Deletar')">
+          <a (click)="openDialog(element, 'Deletar')">
             <i class="material-icons delete">delete</i>
           </a>
         </td>

@@ -2,22 +2,6 @@
   <form class="form" [formGroup]="form">
     <h1 class="fullWidth">{{ operacao }} Aluno</h1>
 
-    <section class="section">
-      <mat-checkbox (click)="addPerfil(0)" class="margin" color="primary"
-        >Admin</mat-checkbox
-      >
-      <mat-checkbox
-        (click)="addPerfil(1)"
-        [checked]="true"
-        class="margin"
-        color="primary"
-        >Aluno</mat-checkbox
-      >
-      <mat-checkbox (click)="addPerfil(2)" class="margin" color="primary"
-        >Aluno</mat-checkbox
-      >
-    </section>
-
     <mat-form-field class="fullWidth">
       <mat-label>Nome</mat-label>
       <input
@@ -73,7 +57,7 @@
       (click)="concluir()"
       class="fullWidth mat-elevation-z4"
       mat-flat-button
-      [color]="operacao ? 'warn' : 'primary'"
+      [color]="operacao == 'Deletar' ? 'warn' : 'primary'"
     >
       {{ operacao == "Deletar" ? "Excluir" : "Salvar" }}
     </button>

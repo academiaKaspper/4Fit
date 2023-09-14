@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { Operacao } from "src/app/enums/operacao-enum";
 import { Aluno } from "src/app/models/aluno";
 import { AlunoService } from "src/app/services/aluno.service";
-
-//import { Aluno } from 'src/app/models/aluno';
-//import { TecnicoService } from 'src/app/services/aluno.service';
+import { AlunoCrudComponent } from "./aluno-crud/aluno-crud.component";
 
 @Component({
   selector: "app-aluno",
@@ -21,7 +20,20 @@ export class AlunoComponent implements OnInit {
   dataSource = new MatTableDataSource<Aluno>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(private service: AlunoService, private route: Router) {}
+  constructor(
+    private service: AlunoService,
+    private route: Router,
+    private dialog: MatDialog
+  ) {}
+  openDialog(element: Aluno, operacao: string = ""): void {
+    const dialogRef = this.dialog.open(AlunoCrudComponent, {
+      data: { element: element, operacao: operacao },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.findAll();
+    });
+  }
 
   ngOnInit(): void {
     this.findAll();

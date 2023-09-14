@@ -1,4 +1,4 @@
-import { Instrutor } from "./../../../models/instrutor";
+import { Instrutor } from "../../../models/instrutor";
 import { Component } from "@angular/core";
 import { FormControl, Validators, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -7,11 +7,11 @@ import { ToastrService } from "ngx-toastr";
 import { InstrutorService } from "src/app/services/instrutor.service";
 
 @Component({
-  selector: "app-instrutor-create",
-  templateUrl: "./instrutor-create.component.html",
-  styleUrls: ["./instrutor-create.component.scss"],
+  selector: "app-instrutor-crud",
+  templateUrl: "./instrutor-crud.component.html",
+  styleUrls: ["./instrutor-crud.component.scss"],
 })
-export class InstrutorCreateComponent {
+export class InstrutorCrudComponent {
   instrutor: Instrutor = new Instrutor();
   operacao: string = "";
   form: FormGroup;
