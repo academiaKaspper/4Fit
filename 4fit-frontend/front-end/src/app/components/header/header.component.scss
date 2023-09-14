@@ -1,13 +1,16 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  height: 10vh;
+  padding: 0 2rem;
+  box-shadow: 0px 5px 10px #cccccc;
+  background-color: #000;
 }
 
+button {
+  color: white;
+}
 h1 {
-  margin-top: 1rem;
-  border: 1px solid rgb(161, 159, 159);
-  padding: 1rem 5%;
-  border-radius: 2rem;
-  background-color: rgb(252, 134, 49);
+  margin: 0;
+  color: #fff;
 }

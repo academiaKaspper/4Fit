@@ -1,14 +1,17 @@
 <div class="container">
-  <h1>Listando Alunoes</h1>
+  <div style="display: flex; justify-content: space-between">
+    <h1>Alunos</h1>
 
-  <button
-    (click)="crudAluno(null, 'Cadastrar')"
-    class="mat-elevation-z8"
-    mat-stroked-button
-    color="primary"
-  >
-    Novo Aluno
-  </button>
+    <button
+      (click)="crudAluno(null, 'Cadastrar')"
+      class="mat-elevation-z8"
+      mat-raised-button
+      color="primary"
+    >
+      <mat-icon>add</mat-icon>
+      Novo Aluno
+    </button>
+  </div>
 
   <mat-form-field>
     <mat-label>Filter</mat-label>
@@ -48,7 +51,7 @@
           <a (click)="crudAluno(element.id, 'Atualizar')">
             <i class="material-icons edit">edit</i>
           </a>
-          <a (click)="crudAluno(null, 'Deletar')">
+          <a (click)="crudAluno(element.id, 'Deletar')">
             <i class="material-icons delete">delete</i>
           </a>
         </td>

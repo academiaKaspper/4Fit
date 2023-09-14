@@ -18,7 +18,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: NavComponent,
     children: [
-      { path: "home", component: HomeComponent },
+      { path: "", component: HomeComponent },
       { path: "alunos", component: AlunoListComponent },
       { path: "alunos/crud", component: AlunoCrudComponent },
       { path: "instrutores", component: InstrutorListComponent },

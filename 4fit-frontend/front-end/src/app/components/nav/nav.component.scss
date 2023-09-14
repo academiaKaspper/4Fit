@@ -3,9 +3,8 @@
 }
 
 .sidenav {
-  width: 13rem;
+  width: 18vw;
   color: white;
-  background: rgb(128, 128, 128);
 }
 
 img {
@@ -26,4 +25,12 @@ img {
   margin: 1rem 0 0 2rem;
   color: white;
   background: rgb(128, 128, 128);
+}
+a {
+  span {
+    margin-left: 0.4rem;
+  }
+}
+mat-nav-list {
+  padding-left: 1rem;
 }

@@ -7,7 +7,13 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+.mdc-list-item__primary-text {
+  display: flex !important;
 }
 a {
   cursor: pointer;
