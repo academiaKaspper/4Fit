@@ -29,7 +29,7 @@ Tecnologias Utilizadas
     Documentação da API:
         Swagger
 
-Autores:
+#Autores:
 
 Vinícius
 
@@ -37,13 +37,13 @@ Davi
 
 Rebeca
 
-Eron  <a href="https://www.linkedin.com/in/eronmoraes7/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
-
+Eron
 ##
 
 Licença
 
 Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para mais detalhes.
+
 Agradecimentos
 
 Gostaria de agradecer a todos que contribuíram para o desenvolvimento deste sistema, incluindo meus orientadores, colegas de classe e todos os usuários que forneceram feedback valioso.
