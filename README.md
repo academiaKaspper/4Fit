@@ -44,6 +44,7 @@ Eron
 Licença
 
 Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para mais detalhes.
+
 Agradecimentos
 
 Gostaria de agradecer a todos que contribuíram para o desenvolvimento deste sistema, incluindo meus orientadores, colegas de classe e todos os usuários que forneceram feedback valioso.
