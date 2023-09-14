@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
+import { MatDialog } from "@angular/material/dialog";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { Instrutor } from "src/app/models/instrutor";
 import { InstrutorService } from "src/app/services/instrutor.service";
+import { InstrutorCrudComponent } from "./instrutor-crud/instrutor-crud.component";
 
 @Component({
   selector: "app-instrutor",
@@ -17,7 +19,20 @@ export class InstrutorComponent implements OnInit {
   dataSource = new MatTableDataSource<Instrutor>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(private service: InstrutorService, private route: Router) {}
+  constructor(
+    private service: InstrutorService,
+    private route: Router,
+    private dialog: MatDialog
+  ) {}
+  openDialog(element: Instrutor, operacao: string = ""): void {
+    const dialogRef = this.dialog.open(InstrutorCrudComponent, {
+      data: { element: element, operacao: operacao },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.findAll();
+    });
+  }
 
   ngOnInit(): void {
     this.findAll();
@@ -35,7 +50,6 @@ export class InstrutorComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
   crudInstrutor(id: number = null, operacao: string) {
     this.route.navigate(["/instrutores/crud", { id: id, operacao: operacao }]);
   }

@@ -3,9 +3,9 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
-import { Operacao } from "src/app/enums/operacao-enum";
 import { Aluno } from "src/app/models/aluno";
 import { AlunoService } from "src/app/services/aluno.service";
+
 import { AlunoCrudComponent } from "./aluno-crud/aluno-crud.component";
 
 @Component({

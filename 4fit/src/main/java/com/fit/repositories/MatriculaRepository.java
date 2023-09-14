@@ -13,6 +13,13 @@ public interface MatriculaRepository extends JpaRepository<Matricula, Integer> {
     void deleteByAluno_Id(Integer id);
 
     Matricula findByAlunoId(Integer id);
+
+
+    @Modifying
+    @Query(value = "DELETE FROM Matricula m WHERE m.instrutor.id = ?1")
+    void deleteByInstrutor_Id(Integer id);
+
+    Matricula findByInstrutorId(Integer id);
 }
 
 

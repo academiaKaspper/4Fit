@@ -1,10 +1,11 @@
-import { Instrutor } from "../../../models/instrutor";
-import { Component } from "@angular/core";
-import { FormControl, Validators, FormGroup } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, Inject } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { ToastrService } from "ngx-toastr";
-
+import { Operacao } from "src/app/enums/operacao-enum";
+import { Instrutor } from "src/app/models/instrutor";
 import { InstrutorService } from "src/app/services/instrutor.service";
+import { NotificationService } from "../../../services/notification.service";
 
 @Component({
   selector: "app-instrutor-crud",
@@ -13,82 +14,56 @@ import { InstrutorService } from "src/app/services/instrutor.service";
 })
 export class InstrutorCrudComponent {
   instrutor: Instrutor = new Instrutor();
-  operacao: string = "";
   form: FormGroup;
+  operacao: string = "";
 
   constructor(
     private service: InstrutorService,
     private toast: ToastrService,
-    private router: Router,
-    private route: ActivatedRoute
+    private notification: NotificationService,
+    public dialogRef: MatDialogRef<InstrutorCrudComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    if (data) {
+      this.instrutor = data.element;
+      this.operacao = data.operacao;
+    }
     this.form = new FormGroup({
       nome: new FormControl(
-        { value: null, disabled: this.operacao == "Deletar" },
+        {
+          value: this.instrutor?.nome ?? null,
+          disabled: this.operacao == "Deletar",
+        },
         Validators.minLength(3)
       ),
       cpf: new FormControl(
-        { value: null, disabled: this.operacao == "Deletar" },
+        {
+          value: this.instrutor?.cpf ?? null,
+          disabled: this.operacao == "Deletar",
+        },
         Validators.required
       ),
       email: new FormControl(
-        { value: null, disabled: this.operacao == "Deletar" },
+        {
+          value: this.instrutor?.email ?? null,
+          disabled: this.operacao == "Deletar",
+        },
         Validators.email
       ),
       senha: new FormControl(
-        { value: null, disabled: this.operacao == "Deletar" },
+        {
+          value: this.instrutor?.senha ?? null,
+          disabled: this.operacao == "Deletar",
+        },
         Validators.minLength(3)
       ),
     });
-    route.params.subscribe((param: any) => {
-      this.operacao = param["operacao"];
-
-      if (param["id"] !== "null") {
-        service.findById(param["id"]).subscribe((res: any) => {
-          this.instrutor = res;
-
-          this.form = new FormGroup({
-            nome: new FormControl(
-              {
-                value: this.instrutor.nome,
-                disabled: this.operacao == "Deletar",
-              },
-              Validators.minLength(3)
-            ),
-            cpf: new FormControl(
-              {
-                value: this.instrutor.cpf,
-                disabled: this.operacao == "Deletar",
-              },
-              Validators.required
-            ),
-            email: new FormControl(
-              {
-                value: this.instrutor.email,
-                disabled: this.operacao == "Deletar",
-              },
-              Validators.email
-            ),
-            senha: new FormControl(
-              {
-                value: this.instrutor.senha,
-                disabled: this.operacao == "Deletar",
-              },
-              Validators.minLength(3)
-            ),
-          });
-        });
-      }
-    });
   }
-
-  ngOnInit(): void {}
 
   create(): void {
     this.service.create(this.instrutor).subscribe(
       () => {
         this.toast.success("Instrutor cadastrado com sucesso", "Cadastro");
-        this.router.navigate(["instrutors"]);
       },
       (ex) => {
         if (ex.error.errors) {
@@ -108,5 +83,56 @@ export class InstrutorCrudComponent {
     } else {
       this.instrutor.perfil.push(perfil);
     }
+  }
+  cancelar() {
+    this.dialogRef.close();
+  }
+  concluir() {
+    if (this.operacao == Operacao.Deletar) {
+      this.notification
+        .enviarNotificacaoConfirmar(
+          "Excluir",
+          "Tem certeza que deseja excluir esse instrutor?",
+          "warn"
+        )
+        .then((x) => {
+          if (x.isConfirmed) {
+            return this.deletar();
+          }
+        });
+    } else if (this.operacao == Operacao.Cadastrar) {
+      return this.create();
+    } else {
+      return this.atualizar();
+    }
+  }
+  deletar() {
+    this.service.delete(this.instrutor.id).subscribe(
+      (res) => {
+        debugger;
+      },
+      (e) => {
+        if (e.status == 200) {
+          this.dialogRef.close();
+          this.notification.enviarNotificacaoToRoute(
+            "Tudo certo",
+            "Instrutor excluído com sucesso",
+            "success",
+            "/instrutores"
+          );
+        } else {
+          this.notification.enviarNotificacao(
+            "Ops",
+            "Falha ao excluir instrutor!",
+            "error"
+          );
+        }
+      }
+    );
+  }
+  atualizar() {
+    this.service.update(this.form.value).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

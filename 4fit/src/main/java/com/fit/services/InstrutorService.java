@@ -1,14 +1,19 @@
 package com.fit.services;
 
 import com.fit.domain.Instrutor;
+import com.fit.domain.Matricula;
 import com.fit.domain.Pessoa;
 import com.fit.domain.dtos.InstrutorDTO;
 import com.fit.repositories.InstrutorRepository;
+import com.fit.repositories.MatriculaRepository;
 import com.fit.repositories.PessoaRepository;
 import com.fit.services.exceptions.DataIntegrityViolationException;
 import com.fit.services.exceptions.ObjectnotFoundException;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +25,8 @@ public class InstrutorService {
     private InstrutorRepository instrutorRepository;
     @Autowired
     private PessoaRepository pessoaRepository;
+    @Autowired
+    private MatriculaRepository matriculaRepository;
 
     public Instrutor findById(Integer id){
         Optional<Instrutor> obj = instrutorRepository.findById(id);
@@ -43,14 +50,22 @@ public class InstrutorService {
         oldObj = new Instrutor(objDTO);
         return instrutorRepository.save(oldObj);
     }
-    public void delete(Integer id) {
-        Instrutor obj = findById(id);
-        if(obj.getAlunos().size() > 0){
-            throw new DataIntegrityViolationException("O instrutor contém alunos matriculados em suas aulas e não pode ser deletado!");
-        }
-            instrutorRepository.deleteById(id);
-    }
+    @Transactional
+    public ResponseEntity<String> delete(Integer id) {
+        try {
+            Matricula matricula = matriculaRepository.findByInstrutorId(id);
 
+            if (matricula != null) {
+                matriculaRepository.deleteByInstrutor_Id(id);
+            }
+
+            instrutorRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Aluno e matrícula excluídos com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao excluir aluno e matrícula: " + e.getMessage());
+
+        }
+    }
     private void validaPorCpfEEmail(InstrutorDTO objDTO) {
         Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
         if(obj.isPresent() && obj.get().getId() != objDTO.getId()){

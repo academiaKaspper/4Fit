@@ -54,15 +54,15 @@
     </mat-form-field>
 
     <button
-      (click)="create()"
+      (click)="concluir()"
       class="fullWidth mat-elevation-z4"
       mat-flat-button
-      color="primary"
+      [color]="operacao == 'Deletar' ? 'warn' : 'primary'"
     >
-      Cadastrar
+      {{ operacao == "Deletar" ? "Excluir" : "Salvar" }}
     </button>
     <button
-      routerLink="../"
+      (click)="cancelar()"
       class="fullWidth mat-elevation-z4"
       mat-stroked-button
       color="warn"

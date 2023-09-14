@@ -45,8 +45,12 @@ public class InstrutorResource {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<InstrutorDTO> delete(@PathVariable Integer id){
-        instrutorService.delete(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> delete(@PathVariable Integer id) {
+        try {
+            instrutorService.delete(id);
+            return ResponseEntity.ok("Instrutor deletado com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Erro ao deletar instrutor: " + e.getMessage());
+        }
     }
 }
