@@ -19,3 +19,14 @@ img {
   font-size: 5rem;
   color: white;
 }
+.home-style {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  height: 90vh;
+}
+
+.home-style:has(a span:hover) a span:not(:hover) {
+  color: rgb(131, 131, 131);
+  transition: color 0.5s ease-in-out;
+}

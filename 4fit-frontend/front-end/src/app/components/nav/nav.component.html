@@ -7,40 +7,33 @@
     <mat-nav-list class="nav-list">
       <a mat-list-item routerLink="home">
         <i class="material-icons">home</i>
-        Home
+        <span>Início</span>
       </a>
       <a mat-list-item routerLink="alunos">
         <i class="material-icons">account_circle</i>
-        Alunos
+        <span>Alunos</span>
       </a>
       <a mat-list-item routerLink="instrutores">
         <i class="material-icons">person</i>
-        Instrutores
+        <span>Instrutores</span>
       </a>
       <a mat-list-item routerLink="matriculas">
         <i class="material-icons">subtitles</i>
-        Matriculas
+        <span>Matrículas</span>
       </a>
       <a mat-list-item routerLink="financeiro">
         <i class="material-icons">monetization_on</i>
-        Financeiro
+        <span>Financeiro</span>
       </a>
       <a mat-list-item>
         <i class="material-icons">logout</i>
-        Logout
+        <span>Sair</span>
       </a>
     </mat-nav-list>
   </mat-drawer>
 
   <div class="sidenav-content">
     <app-header (menu)="drawer.toggle()"></app-header>
-    <!-- <button
-      class="menu mat-elevation-z8"
-      (click)="drawer.toggle()"
-      mat-icon-button
-    >
-      <mat-icon>menu</mat-icon>
-    </button> -->
     <router-outlet></router-outlet>
   </div>
 </mat-drawer-container>
