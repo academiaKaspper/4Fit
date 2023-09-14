@@ -1,4 +1,4 @@
-export interface Instrutor {
+export class Instrutor {
   id?: any;
   nome: string;
   cpf: string;

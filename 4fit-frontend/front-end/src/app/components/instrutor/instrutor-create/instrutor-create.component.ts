@@ -1,8 +1,9 @@
+import { Instrutor } from "./../../../models/instrutor";
 import { Component } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { FormControl, Validators, FormGroup } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
-import { Instrutor } from "src/app/models/instrutor";
+
 import { InstrutorService } from "src/app/services/instrutor.service";
 
 @Component({
@@ -11,26 +12,75 @@ import { InstrutorService } from "src/app/services/instrutor.service";
   styleUrls: ["./instrutor-create.component.scss"],
 })
 export class InstrutorCreateComponent {
-  instrutor: Instrutor = {
-    id: "",
-    nome: "",
-    cpf: "",
-    email: "",
-    senha: "",
-    perfil: [],
-    dataCriacao: "",
-  };
-
-  nome: FormControl = new FormControl(null, Validators.minLength(3));
-  cpf: FormControl = new FormControl(null, Validators.required);
-  email: FormControl = new FormControl(null, Validators.email);
-  senha: FormControl = new FormControl(null, Validators.minLength(3));
+  instrutor: Instrutor = new Instrutor();
+  operacao: string = "";
+  form: FormGroup;
 
   constructor(
     private service: InstrutorService,
     private toast: ToastrService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.form = new FormGroup({
+      nome: new FormControl(
+        { value: null, disabled: this.operacao == "Deletar" },
+        Validators.minLength(3)
+      ),
+      cpf: new FormControl(
+        { value: null, disabled: this.operacao == "Deletar" },
+        Validators.required
+      ),
+      email: new FormControl(
+        { value: null, disabled: this.operacao == "Deletar" },
+        Validators.email
+      ),
+      senha: new FormControl(
+        { value: null, disabled: this.operacao == "Deletar" },
+        Validators.minLength(3)
+      ),
+    });
+    route.params.subscribe((param: any) => {
+      this.operacao = param["operacao"];
+
+      if (param["id"] !== "null") {
+        service.findById(param["id"]).subscribe((res: any) => {
+          this.instrutor = res;
+
+          this.form = new FormGroup({
+            nome: new FormControl(
+              {
+                value: this.instrutor.nome,
+                disabled: this.operacao == "Deletar",
+              },
+              Validators.minLength(3)
+            ),
+            cpf: new FormControl(
+              {
+                value: this.instrutor.cpf,
+                disabled: this.operacao == "Deletar",
+              },
+              Validators.required
+            ),
+            email: new FormControl(
+              {
+                value: this.instrutor.email,
+                disabled: this.operacao == "Deletar",
+              },
+              Validators.email
+            ),
+            senha: new FormControl(
+              {
+                value: this.instrutor.senha,
+                disabled: this.operacao == "Deletar",
+              },
+              Validators.minLength(3)
+            ),
+          });
+        });
+      }
+    });
+  }
 
   ngOnInit(): void {}
 
@@ -58,11 +108,5 @@ export class InstrutorCreateComponent {
     } else {
       this.instrutor.perfil.push(perfil);
     }
-  }
-
-  validaCampos(): boolean {
-    return (
-      this.nome.valid && this.cpf.valid && this.email.valid && this.senha.valid
-    );
   }
 }

@@ -10,11 +10,11 @@ import { AlunoService } from "src/app/services/aluno.service";
 //import { TecnicoService } from 'src/app/services/aluno.service';
 
 @Component({
-  selector: "app-aluno-list",
-  templateUrl: "./aluno-list.component.html",
-  styleUrls: ["./aluno-list.component.scss"],
+  selector: "app-aluno",
+  templateUrl: "./aluno.component.html",
+  styleUrls: ["./aluno.component.scss"],
 })
-export class AlunoListComponent implements OnInit {
+export class AlunoComponent implements OnInit {
   ELEMENT_DATA: Aluno[] = [];
 
   displayedColumns: string[] = ["id", "nome", "cpf", "email", "acoes"];

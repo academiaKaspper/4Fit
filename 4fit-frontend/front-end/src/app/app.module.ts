@@ -21,8 +21,8 @@ import { ToastrModule } from "ngx-toastr";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { AlunoCrudComponent } from "./components/aluno/aluno-create/aluno-create.component";
-import { AlunoListComponent } from "./components/aluno/aluno-list/aluno-list.component";
+import { AlunoCrudComponent } from "./components/aluno/aluno-crud/aluno-crud.component";
+import { AlunoComponent } from "./components/aluno/aluno.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/home/home.component";
 import { InstrutorCreateComponent } from "./components/instrutor/instrutor-create/instrutor-create.component";
@@ -39,7 +39,7 @@ import { NavComponent } from "./components/nav/nav.component";
     HomeComponent,
     HeaderComponent,
     InstrutorListComponent,
-    AlunoListComponent,
+    AlunoComponent,
     LoginComponent,
     InstrutorDeleteComponent,
     InstrutorUpdateComponent,

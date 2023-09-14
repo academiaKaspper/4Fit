@@ -1,15 +1,13 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { NavComponent } from "./components/nav/nav.component";
+import { AuthGuard } from "./auth/auth.guard";
+import { AlunoCrudComponent } from "./components/aluno/aluno-crud/aluno-crud.component";
+import { AlunoComponent } from "./components/aluno/aluno.component";
 import { HomeComponent } from "./components/home/home.component";
+import { InstrutorCreateComponent } from "./components/instrutor/instrutor-create/instrutor-create.component";
 import { InstrutorListComponent } from "./components/instrutor/instrutor-list/instrutor-list.component";
 import { LoginComponent } from "./components/login/login.component";
-import { AlunoListComponent } from "./components/aluno/aluno-list/aluno-list.component";
-import { InstrutorDeleteComponent } from "./components/instrutor/instrutor-delete/instrutor-delete.component";
-import { AuthGuard } from "./auth/auth.guard";
-import { InstrutorCreateComponent } from "./components/instrutor/instrutor-create/instrutor-create.component";
-import { InstrutorUpdateComponent } from "./components/instrutor/instrutor-update/InstrutorUpdateComponent";
-import { AlunoCrudComponent } from "./components/aluno/aluno-create/aluno-create.component";
+import { NavComponent } from "./components/nav/nav.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -19,12 +17,10 @@ const routes: Routes = [
     component: NavComponent,
     children: [
       { path: "", component: HomeComponent },
-      { path: "alunos", component: AlunoListComponent },
+      { path: "alunos", component: AlunoComponent },
       { path: "alunos/crud", component: AlunoCrudComponent },
       { path: "instrutores", component: InstrutorListComponent },
-      { path: "instrutores/create", component: InstrutorCreateComponent },
-      { path: "instrutores/update/:id", component: InstrutorUpdateComponent },
-      { path: "instrutores/delete/:id", component: InstrutorDeleteComponent },
+      { path: "instrutores/crud", component: InstrutorCreateComponent },
     ],
   },
 ];

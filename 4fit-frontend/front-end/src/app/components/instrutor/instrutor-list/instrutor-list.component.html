@@ -1,15 +1,17 @@
 <div class="container">
-  <h1>Instrutores</h1>
+  <div style="display: flex; justify-content: space-between">
+    <h1>Instrutores</h1>
 
-  <button
-    routerLink="create"
-    class="mat-elevation-z8"
-    mat-stroked-button
-    color="primary"
-  >
-    Novo Instrutor
-  </button>
-
+    <button
+      (click)="crudInstrutor(null, 'Cadastrar')"
+      class="mat-elevation-z8"
+      mat-raised-button
+      color="primary"
+    >
+      <mat-icon>add</mat-icon>
+      Novo
+    </button>
+  </div>
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input
@@ -45,10 +47,10 @@
       <ng-container matColumnDef="acoes">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let element">
-          <a routerLink="update/{{ element.id }}">
+          <a (click)="crudInstrutor(element.id, 'Editar')">
             <i class="material-icons edit">edit</i>
           </a>
-          <a routerLink="delete/{{ element.id }}">
+          <a (click)="crudInstrutor(element.id, 'Deletar')">
             <i class="material-icons delete">delete</i>
           </a>
         </td>

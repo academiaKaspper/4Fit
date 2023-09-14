@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
+import { Router } from "@angular/router";
 import { Instrutor } from "src/app/models/instrutor";
 import { InstrutorService } from "src/app/services/instrutor.service";
 
@@ -16,7 +17,7 @@ export class InstrutorListComponent implements OnInit {
   dataSource = new MatTableDataSource<Instrutor>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(private service: InstrutorService) {}
+  constructor(private service: InstrutorService, private route: Router) {}
 
   ngOnInit(): void {
     this.findAll();
@@ -33,5 +34,9 @@ export class InstrutorListComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  crudInstrutor(id: number = null, operacao: string) {
+    this.route.navigate(["/instrutores/crud", { id: id, operacao: operacao }]);
   }
 }

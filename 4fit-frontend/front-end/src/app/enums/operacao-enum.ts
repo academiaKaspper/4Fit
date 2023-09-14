@@ -1,6 +1,6 @@
 export enum Operacao {
   Deletar = "Deletar",
   Cadastrar = "Cadastrar",
-  Atualizar = "Atualizar",
+  Editar = "Editar",
   Visualizar = "Visualizar",
 }

@@ -1,4 +1,4 @@
-import { NotificationService } from "./../../../services/notification.service";
+import { NotificationService } from "../../../services/notification.service";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -8,9 +8,9 @@ import { Aluno } from "src/app/models/aluno";
 import { AlunoService } from "src/app/services/aluno.service";
 
 @Component({
-  selector: "app-aluno-create",
-  templateUrl: "./aluno-create.component.html",
-  styleUrls: ["./aluno-create.component.scss"],
+  selector: "app-aluno-crud",
+  templateUrl: "./aluno-crud.component.html",
+  styleUrls: ["./aluno-crud.component.scss"],
 })
 export class AlunoCrudComponent {
   aluno: Aluno = new Aluno();
@@ -23,26 +23,27 @@ export class AlunoCrudComponent {
     private notification: NotificationService,
     private route: ActivatedRoute
   ) {
+    this.form = new FormGroup({
+      nome: new FormControl(
+        { value: null, disabled: this.operacao == "Deletar" },
+        Validators.minLength(3)
+      ),
+      cpf: new FormControl(
+        { value: null, disabled: this.operacao == "Deletar" },
+        Validators.required
+      ),
+      email: new FormControl(
+        { value: null, disabled: this.operacao == "Deletar" },
+        Validators.email
+      ),
+      senha: new FormControl(
+        { value: null, disabled: this.operacao == "Deletar" },
+        Validators.minLength(3)
+      ),
+    });
     route.params.subscribe((param: any) => {
       this.operacao = param["operacao"];
-      this.form = new FormGroup({
-        nome: new FormControl(
-          { value: null, disabled: this.operacao == "Deletar" },
-          Validators.minLength(3)
-        ),
-        cpf: new FormControl(
-          { value: null, disabled: this.operacao == "Deletar" },
-          Validators.required
-        ),
-        email: new FormControl(
-          { value: null, disabled: this.operacao == "Deletar" },
-          Validators.email
-        ),
-        senha: new FormControl(
-          { value: null, disabled: this.operacao == "Deletar" },
-          Validators.minLength(3)
-        ),
-      });
+
       if (param["id"] !== "null") {
         service.findById(param["id"]).subscribe((res: any) => {
           this.aluno = res;
