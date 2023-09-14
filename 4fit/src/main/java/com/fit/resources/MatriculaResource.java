@@ -29,4 +29,11 @@ public class MatriculaResource {
     public ResponseEntity<MatriculaDTO> create(){
         return null;
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity delete(@PathVariable Integer id){
+        matriculaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

@@ -46,7 +46,14 @@ public class Fatura implements Serializable {
     @JoinColumn(name = "modalidade_id")
     private Modalidade modalidade;
 
-	public void setAluno(Aluno aluno) {
+
+    public Fatura() {
+        super();
+    }
+
+
+
+    public void setAluno(Aluno aluno) {
 		
 	}
 
@@ -60,10 +67,6 @@ public class Fatura implements Serializable {
 		
 	}
 
-	public void setDataPagamento(Object object) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void setMatricula(Matricula matricula2) {
 		// TODO Auto-generated method stub
